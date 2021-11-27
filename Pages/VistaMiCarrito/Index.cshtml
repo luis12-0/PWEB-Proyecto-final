@@ -1,0 +1,52 @@
+﻿@page
+@model Prueba6.Pages.VistaMiCarrito.IndexModel
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<div class="container">
+    <div class="row">
+        <div class="col-6">
+            <h1 class="">Mi carrito</h1>
+        </div>
+        <div class="col-6">
+            <h1 id="mostrarPrecio" class="text-right"></h1>
+        </div>
+    </div>
+</div>
+
+<hr />
+@foreach (var item in Model.MiCarrito)
+{
+    <div class="card mb-4 mt-4" style="height:15rem;">
+        <div class="row g-0">
+            <div class="col-md-4 ">
+                <img style="height:15rem; width:100%; object-fit:cover;"
+                     class="img-fluid rounded-start p-2" src="@Html.DisplayFor(modelItem => item.ImagenMiCarrito)">
+            </div>
+            <div class="col-md-4">
+                <div class="card-body">
+                    <h1 class="card-title ">@Html.DisplayFor(modelItem => item.ArticuloMiCarrito)</h1>
+                    <h2 class="card-title precio">$@Html.DisplayFor(modelItem => item.PrecioMiCarrito)</h2>
+
+                    <p class="card-text">@Html.DisplayFor(modelItem => item.DescripcionMiCarrito)</p>
+                </div>
+            </div>
+            <div class="col-md-4 align-self-center">
+                <div class="text-center">
+                    <a class="btn btn-outline-danger btn-lg text-center"
+                       asp-page="./Delete" asp-route-id="@item.IdmiCarrito">Quitar de Mi Carrito</a>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+}
+
+
+@section Scripts{
+    <script src="~/js/PrecioFinal.js" asp-append-version="true"></script>
+
+}

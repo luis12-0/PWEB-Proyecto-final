@@ -1,0 +1,62 @@
+﻿@page
+@model Prueba6.Pages.IndexModel
+
+@{
+    ViewData["Title"] = "Alimentos";
+}
+
+
+
+<div id="carouselExampleIndicators" class="carousel slide" data-bs-ride="carousel" style="height:15rem;">
+
+    <div class="carousel-inner">
+        <div class="carousel-item active" data-bs-interval="3000">
+            <a href="https://www.soriana.com/">
+                <img src="https://promoliquidescuentos.net/wp-content/uploads/2021/09/Martes-Y-Miercoles-Del-Campo-Soriana.jpg" style="object-fit: cover; height: 15rem;"
+                     class="d-block w-100">
+            </a>
+
+        </div>
+        <div class="carousel-item">
+            <a href="https://www.soriana.com/" data-bs-interval="3000">
+                <img src="https://promociondescuentos.com/wp-content/uploads/2020/05/soriana-super-frutas-verduras-mayo-26-1280x720.jpg" style="object-fit:cover;height:15rem;" class="d-block w-100" alt="...">
+            </a>
+        </div>
+        <div class="carousel-item">
+            <a href="https://www.soriana.com/" data-bs-interval="3000">
+                <img src="https://promoliquidescuentos.net/wp-content/uploads/2021/09/Ofertas-Soriana-Fin-de-Semana-24-de-septiembre-2021.webp" style="object-fit: cover; height: 15rem;" class="d-block w-100" alt="...">
+            </a>
+        </div>
+    </div>
+</div>
+
+<h1>Alimentos</h1>
+<hr />
+<div class="container">
+    <div class="row row-cols-auto">
+
+        @foreach (var item in Model.Alimento)
+        {
+            <div class="col">
+                <div class="card mt-4" style="width: 18rem;height:25rem;">
+                    <img src="@Html.DisplayFor(modelItem => item.ImagenAlimentos)"
+                         class="card-img-top" style="width: 17rem; height: 13rem; object-fit: cover;" alt="...">
+                    <div class="card-body">
+                        <h5 class="card-title">@Html.DisplayFor(modelItem => item.ArticuloAlimentos)</h5>
+                        <p class="card-text">@Html.DisplayFor(modelItem => item.DescripcionAlimentos)</p>
+                        <div class="row">
+                            <div class="col">
+                                <h2 class="card-title">$@Html.DisplayFor(modelItem => item.PrecioAlimentos)</h2>
+                            </div>
+                            <div class="col">
+                                <a class="btn btn-primary btn-lg mb-2" asp-page="./VistaMiCarrito/Create" asp-route-producto="@item.ArticuloAlimentos"
+                                   asp-route-descripcion="@item.DescripcionAlimentos" asp-route-precio="@item.PrecioAlimentos"
+                                   asp-route-imagen="@item.ImagenAlimentos">Comprar</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        }
+    </div>
+</div>

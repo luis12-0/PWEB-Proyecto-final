@@ -1,0 +1,55 @@
+﻿@page "{producto}/{descripcion}/{precio}/{imagen}"
+@model Prueba6.Pages.VistaMiCarrito.CreateModel
+
+@{
+    ViewData["Title"] = "Confirmacion";
+}
+
+
+<h4>Confirmacion para agregar a Mi Carrito</h4>
+<hr />
+<div class="container h-50">
+    <div class="row ">
+        <div class="col-8">
+            <img src="@Model.Imagen" style="width: 100%; height: 100%; object-fit: cover;">
+        </div>
+        <div class="col-4">
+            <h1>@Model.Producto</h1>
+            <h2>$@Model.Precio</h2>
+            <p>@Model.Descripcion</p>
+
+            <form method="post">
+
+                <input type="hidden" asp-for="MiCarrito.ArticuloMiCarrito" value="@Model.Producto" class="form-control" />
+                <input type="hidden" asp-for="MiCarrito.DescripcionMiCarrito" value="@Model.Descripcion" class="form-control" />
+                <input type="hidden" asp-for="MiCarrito.PrecioMiCarrito" value="@Model.Precio" class="form-control" />
+                <input type="hidden" asp-for="MiCarrito.ImagenMiCarrito" value="@Model.Imagen" class="form-control" />
+                <span asp-validation-for="MiCarrito.ImagenMiCarrito" class="text-danger"></span>
+                <div class="form-group text-center" >
+                    <input type="submit" value="Confirmar compra" class="btn btn-outline-success btn-lg" style="width:100%;"/>
+                </div>
+            </form>
+
+            
+            @if (Model.Precio < 650)
+            {
+                <a asp-page="../VistaAlimento/Index" class="btn btn-outline-danger float-left" role="button" style="width:45%;">Regresar</a>
+            }
+            else
+            {
+                <a asp-page="../VistaElectrodomestico/Index" class="btn btn-outline-danger float-left" role="button" style="width:45%;">Regresar</a>
+            }
+
+            <a asp-page="Index" class="btn btn-outline-warning float-right" role="button" style="width:45%;">Ver mi carrito</a>
+        </div>
+    </div>
+</div>
+<div class="row">
+    <div class="col-md-4">
+        
+    </div>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}
